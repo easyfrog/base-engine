@@ -1,0 +1,25 @@
+{
+    "name": "base-engine",
+    "version": "1.0.0",
+    "description": "threejs project base engine",
+    "main": "./dist/sdk/base-engine.js",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "dts": "dts-bundle-generator --no-banner --no-check --umd-module-name=frog --external-types=three -o dist/sdk/index.d.ts src/engine/index.js",
+        "p": "vite build -- project "
+    },
+    "author": "ooomap",
+    "dependencies": {
+        "@tweenjs/tween.js": "^20.0.3",
+        "@types/node": "^20.2.5",
+        "@types/three": "^0.152.1",
+        "three": "^0.153.0"
+    },
+    "license": "ISC",
+    "devDependencies": {
+        "dts-bundle-generator": "^8.0.1",
+        "vite": "^4.3.9"
+    }
+}
