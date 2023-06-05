@@ -87,7 +87,8 @@ export function processGLTF (game, gltf) {
 		}
 
 		// helpers
-		if (m.userData && m.userData.tags === 'helper') {
+		// if (m.userData && m.userData.tags === 'helper') {
+		if (m.type === 'Object3D') {
 			gltf.helpers.push(m)
 		}
 

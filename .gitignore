@@ -9,7 +9,7 @@ lerna-debug.log*
 
 src/projects
 dist
-!dist/sdk
+!dist/sdk/**
 
 node_modules
 # dist

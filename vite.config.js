@@ -63,6 +63,7 @@ export default defineConfig({
     resolve: {
         alias: {
             "@engine": path.resolve(__dirname, './src/engine'),
+            "@utils": path.resolve(__dirname, './src/utils'),
             "@jsm": path.resolve(__dirname, './node_modules/three/examples/jsm')
         }
     },
