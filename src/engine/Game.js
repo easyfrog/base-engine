@@ -86,9 +86,6 @@ export class Game extends Evento {
         this.emit('viewSizeChanged', { width: this.width, height: this.height });
     }
 
-    setMixerRoot(root) {
-    }
-
     /**
      * 快捷的播放clipAction, 可正/反播放
      * @param {THREE.AnimationClip} action 
