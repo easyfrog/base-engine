@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { Evento } from "./EventoClass";
 import { update } from "@tweenjs/tween.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { OrbitController } from "./OrbitController";
 
 /**
  * Game Class
@@ -21,6 +21,11 @@ export class Game extends Evento {
         if (!config.container) {
             console.warn('Game config needs container property');
             return
+        }
+
+        // for debug
+        if (globalThis) {
+            globalThis.ga = this
         }
 
         // renderer
@@ -54,10 +59,7 @@ export class Game extends Evento {
         // camera & controller
         this.camera = new THREE.PerspectiveCamera(45, this.width / this.height, 1, 10000)
         this.camera.position.set(0, 40, -100)
-        this.controller = new OrbitControls(this.camera, this.renderer.domElement)
-
-        this.controller.dampingFactor = .1
-        this.controller.enableDamping = true
+        this.controller = new OrbitController(this, this.camera, this.renderer.domElement)
 
         // scene
         this.scene = new THREE.Scene()
@@ -106,7 +108,10 @@ export class Game extends Evento {
         this._frameCount ++
         if (this._frameCount >= this._frameDelta) {
             this._frameCount = 0
-            this.controller.update()
+
+            if (this.controller.enabled) {
+                this.controller.update()
+            }
 
             // got delta Time 
             var deltaTime = this.clock.getDelta();
@@ -124,6 +129,12 @@ export class Game extends Evento {
         }
 
         requestAnimationFrame(this.updateFunc)
+    }
+
+    dispose() {
+        if (window) {
+            window.removeEventListener('resize', this.resizeFunc)
+        }
     }
 
 }

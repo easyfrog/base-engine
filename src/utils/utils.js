@@ -29,8 +29,13 @@ export var utils = {
         return clone
     },
 
-    moveCamera(game, toCamera, duration=1000) {
-
+    /**
+     * 将给定字符串的首字母大写
+     * @param {string} str 
+     * @returns {string}
+     */
+    capFirst(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
     }
 
 }
