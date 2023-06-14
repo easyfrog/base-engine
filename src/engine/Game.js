@@ -116,11 +116,12 @@ export class Game extends Evento {
             if (deltaTime > 1) {
                 deltaTime = 1;
             }
-
+            
             // tween update
             update()
             this.mixer.update(deltaTime)
 
+            this.emit('pre-render', deltaTime)
             this.renderer.render(this.scene, this.camera)
             this.emit('update', deltaTime)
         }

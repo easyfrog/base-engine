@@ -15,11 +15,13 @@
         "@tweenjs/tween.js": "^20.0.3",
         "@types/node": "^20.2.5",
         "@types/three": "^0.152.1",
+        "postprocessing": "^6.31.2",
         "three": "^0.153.0"
     },
     "license": "ISC",
     "devDependencies": {
         "dts-bundle-generator": "^8.0.1",
-        "vite": "^4.3.9"
+        "vite": "^4.3.9",
+        "vite-plugin-glsl": "^1.1.2"
     }
 }
