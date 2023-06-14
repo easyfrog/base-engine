@@ -70,6 +70,18 @@ export class Game extends Evento {
 
     }
 
+    get resolution() {
+        if (!this._resolution) {
+            this._resolution = window.devicePixelRatio
+        }
+        return this._resolution
+    }
+
+    set resolution(value) {
+        this.renderer.setPixelRatio(value)
+        this._resolution = value
+    }
+
     /**
      * @param {number} w 
      * @param {number} h 

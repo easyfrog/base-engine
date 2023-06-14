@@ -18,7 +18,9 @@
 
     // 在 game 中使用
     land.material = new MeshReflectorMaterial(game.renderer, game.camera, game.scene, land, {
-        resolution: 64
+        resolution: 64,     // 返射的分辨率
+        mixStrength: 1,     // 此值可以控制反射强度
+        mixContrast: 1,     // 此值也可以控制反射强度, 并可以控制对比度
     }, {
         map: land.material.map,
         color: land.material.color,
