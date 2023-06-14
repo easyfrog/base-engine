@@ -136,7 +136,35 @@ import {
 
 import * as POSTPROCESSING from "postprocessing";
 
-export class MeshReflectorMaterial extends MeshStandardMaterial {
+/**
+ * @typedef {{
+ *  mixBlur?: number,
+ *  mixStrength?: number,
+ *  resolution?: number,
+ *  blur?: number[],
+ *  minDepthThreshold?: number,
+ *  maxDepthThreshold?: number,
+ *  depthScale?: number,
+ *  depthToBlurRatioBias?: number,
+ *  mirror?: number,
+ *  distortion?: number,
+ *  mixContrast?: number,
+ *  distortionMap: THREE.Texture,
+ *  reflectorOffset: number,
+ *  bufferSamples: number,
+ *  planeNormal: THREE.Vector3
+ * }} ReflectionParameters
+ */
+
+export class MeshReflectorFadeEdgeMaterial extends MeshStandardMaterial {
+    /**
+     * @param {THREE.WebGLRenderer} renderer 
+     * @param {THREE.Camera} camera 
+     * @param {THREE.Scene} scene 
+     * @param {THREE.Object3D} object 
+     * @param {ReflectionParameters} reflectionParameters 
+     * @param {THREE.MeshStandardMaterialParameters} materialPropertes 
+     */
     constructor(renderer, camera, scene, object, {
         mixBlur = 0,
         mixStrength = 1,
