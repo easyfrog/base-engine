@@ -145,6 +145,9 @@ export class Game extends Evento {
         if (window) {
             window.removeEventListener('resize', this.resizeFunc)
         }
+
+        // clear events handlers
+        this.clearHandlers()
     }
 
 }
