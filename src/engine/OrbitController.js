@@ -84,8 +84,15 @@ export class OrbitController extends OrbitControls {
             easing: 'Cubic',
             inout: 'Out',
             // 是否启用球形差值
-            spherical: false
+            spherical: undefined
         }, options)
+
+        // 如果没有指定spherical, 但camera(viewState)中包含phi, theta
+        if (options.spherical === undefined &&
+            'phi' in options &&
+            'theta' in options) {
+            options.spherical = true
+        }
 
         this._lastEnabled = this.enabled
         this.enabled = false
@@ -152,7 +159,6 @@ export class OrbitController extends OrbitControls {
 
                 // 如果是球面插值
                 if (options.spherical) {
-
                     _theta = fromTheta + delta * values.t * sign
 
                     if (_theta > Math.PI) {
