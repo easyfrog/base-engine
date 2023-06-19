@@ -141,6 +141,8 @@ export class Game extends Evento {
         requestAnimationFrame(this.updateFunc)
     }
 
+    
+
     dispose() {
         if (window) {
             window.removeEventListener('resize', this.resizeFunc)
