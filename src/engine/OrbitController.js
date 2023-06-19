@@ -14,7 +14,7 @@ import { Tween, Easing } from "@tweenjs/tween.js";
  *  inout?: string,
  *  onUpdate?: Function
  *  onComplete?: Function,
- *  spherical?: false,
+ *  spherical?: boolean,
  * }} CameraAnimation
  */
 
