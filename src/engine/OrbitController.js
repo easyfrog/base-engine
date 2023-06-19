@@ -72,12 +72,12 @@ export class OrbitController extends OrbitControls {
 
     /**
      * to camera with target
-     * @param {ViewState} camera 
+     * @param {ViewState} cameraOrViewState 
      * @param {CameraAnimation} options 
      * @param {boolean} onlyTween only get tween instance, not start immidiatly
      * @return {Tween}
      */
-    cameraTo(camera, options, onlyTween) {
+    cameraTo(cameraOrViewState, options, onlyTween) {
         options = Object.assign({      
             duration: 1000,
             delay: 0,
@@ -101,9 +101,9 @@ export class OrbitController extends OrbitControls {
             this._camerato_tween.stop()
         }
 
-        var _target = camera.target instanceof THREE.Object3D ? 
-                        camera.target.position : 
-                        camera.target;
+        var _target = cameraOrViewState.target instanceof THREE.Object3D ? 
+                        cameraOrViewState.target.position : 
+                        cameraOrViewState.target;
     
         var from, to, delta, _theta, sign = 1
         var fromTheta
@@ -120,9 +120,9 @@ export class OrbitController extends OrbitControls {
             }
             to = {
                 target: _target,
-                radius: camera.radius,
-                phi: camera.phi,
-                theta: camera.theta,
+                radius: cameraOrViewState.radius,
+                phi: cameraOrViewState.phi,
+                theta: cameraOrViewState.theta,
                 t: 1
             }
 
@@ -146,7 +146,7 @@ export class OrbitController extends OrbitControls {
                 target: this.target
             }
             to = {
-                position: camera.position,
+                position: cameraOrViewState.position,
                 target: _target
             }
         }
