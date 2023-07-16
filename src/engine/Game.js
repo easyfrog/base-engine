@@ -7,6 +7,12 @@ import { OrbitController } from "./OrbitController";
  * Game Class
  */
 export class Game extends Evento {
+
+    /** private fields */
+    #frameDelta
+    #frameCount = 0;
+    #resolution = 1;
+
     /**
      * @param {object} config 
      * @param {HTMLElement} config.container
@@ -36,9 +42,8 @@ export class Game extends Evento {
 
         // frame rate
         this.frameRate = config.frameRate || 30
-        this._frameDelta = Math.ceil(60 / this.frameRate)
-        this._frameCount = 0
-        this._delta = 0
+        this.#frameDelta = Math.ceil(60 / this.frameRate)
+        this.#frameCount = 0
 
         // renderer
         this.width = config.container.offsetWidth
@@ -71,15 +76,15 @@ export class Game extends Evento {
     }
 
     get resolution() {
-        if (!this._resolution) {
-            this._resolution = window.devicePixelRatio
+        if (!this.#resolution) {
+            this.#resolution = window.devicePixelRatio
         }
-        return this._resolution
+        return this.#resolution
     }
 
     set resolution(value) {
         this.renderer.setPixelRatio(value)
-        this._resolution = value
+        this.#resolution = value
     }
 
     /**
@@ -114,9 +119,9 @@ export class Game extends Evento {
 
     update() {
 
-        this._frameCount ++
-        if (this._frameCount >= this._frameDelta) {
-            this._frameCount = 0
+        this.#frameCount ++
+        if (this.#frameCount >= this.#frameDelta) {
+            this.#frameCount = 0
 
             if (this.controller.enabled) {
                 this.controller.update()
@@ -150,6 +155,12 @@ export class Game extends Evento {
 
         // clear events handlers
         this.clearHandlers()
+
+        // remove scene
+        this.scene.children.forEach(obj => {
+            this.scene.remove(obj)
+        })
+        this.scene.children.length = 0
     }
 
 }
