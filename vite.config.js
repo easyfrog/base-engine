@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import glsl from "vite-plugin-glsl";
+import { svelte } from "@sveltejs/vite-plugin-svelte";
 import path from "path";
 import fs from "fs";
 
@@ -69,12 +70,19 @@ export default defineConfig({
         }
     },
     build: {
+        // target: 'es2020',
         minify,
         outDir,
         lib,
         emptyOutDir: false,
     },
+    // optimizeDeps: {
+    //     esbuildOptions: {
+    //         target: 'es2020'
+    //     }
+    // },
     plugins: [
+        svelte(),
         glsl()
     ]
 })

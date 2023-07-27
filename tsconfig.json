@@ -2,9 +2,10 @@
     // "files": [
     //     "./src/index.js", 
     // ],
-    // "include": [
-    //     "node_modules/three/examples/jsm/**/*.js"
-    // ],
+    "include": [
+        // "node_modules/three/examples/jsm/**/*.js",
+        "./src/**/**.js"
+    ],
     "exclude": ["node_modules/**", "dist/**"],
     "compilerOptions": {
         /* Visit https://aka.ms/tsconfig to read more about this file */

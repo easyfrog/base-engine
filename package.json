@@ -12,16 +12,23 @@
     },
     "author": "ooomap",
     "dependencies": {
+        "@jdultra/threedtiles": "^9.1.20",
         "@tweenjs/tween.js": "^20.0.3",
         "@types/node": "^20.2.5",
         "@types/three": "^0.152.1",
+        "3d-tiles-renderer": "^0.3.20",
         "postprocessing": "^6.31.2",
+        "svelte": "^4.1.1"
+    },
+    "peerDependencies": {
         "three": "^0.153.0"
     },
     "license": "ISC",
     "devDependencies": {
+        "@sveltejs/vite-plugin-svelte": "^2.4.3",
         "dts-bundle-generator": "^8.0.1",
         "vite": "^4.3.9",
         "vite-plugin-glsl": "^1.1.2"
-    }
+    },
+    "type": "module"
 }

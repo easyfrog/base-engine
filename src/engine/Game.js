@@ -66,6 +66,10 @@ export class Game extends Evento {
         this.camera.position.set(0, 40, -100)
         this.controller = new OrbitController(this, this.camera, this.renderer.domElement)
 
+        this.controller.addEventListener('change', () => {
+            this.emit('viewChanged')
+        })
+
         // scene
         this.scene = new THREE.Scene()
 
@@ -146,8 +150,6 @@ export class Game extends Evento {
         requestAnimationFrame(this.updateFunc)
     }
 
-    
-
     dispose() {
         if (window) {
             window.removeEventListener('resize', this.resizeFunc)
@@ -164,4 +166,6 @@ export class Game extends Evento {
     }
 
 }
+
+export default Game
 
