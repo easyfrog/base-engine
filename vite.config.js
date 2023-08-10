@@ -76,11 +76,6 @@ export default defineConfig({
         lib,
         emptyOutDir: false,
     },
-    // optimizeDeps: {
-    //     esbuildOptions: {
-    //         target: 'es2020'
-    //     }
-    // },
     plugins: [
         svelte(),
         glsl()

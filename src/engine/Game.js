@@ -9,22 +9,25 @@ import { OrbitController } from "./OrbitController";
 export class Game extends Evento {
 
     /** private fields */
-    #frameDelta
+    #frameDelta;
     #frameCount = 0;
     #resolution = 1;
 
     /**
      * @param {object} config 
+     * @param { HTMLCanvasElement } canvas use to 微信小游戏
      * @param {HTMLElement} config.container
      * @param {boolean} [config.alpha=true]
      * @param {number} [config.frameRate=30]
+     * @param {number} width
+     * @param {number} height
      */
     constructor(config={}) {
         super()
 
         this.config = config
 
-        if (!config.container) {
+        if (!config.container && !config.canvas) {
             console.warn('Game config needs container property');
             return
         }
@@ -36,8 +39,9 @@ export class Game extends Evento {
 
         // renderer
         this.renderer = new THREE.WebGLRenderer({
+            canvas: config.canvas,
+            alpha: config.alpha,
             antialias: true,
-            alpha: config.alpha
         })
 
         // frame rate
@@ -46,16 +50,15 @@ export class Game extends Evento {
         this.#frameCount = 0
 
         // renderer
-        this.width = config.container.offsetWidth
-        this.height = config.container.offsetHeight
-
         this.renderer.setPixelRatio(window.devicePixelRatio);
-        this.renderer.setSize(this.width, this.height);
+        this.renderer.setSize(config.width || this.width, config.height || this.height);
 
         this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
         this.renderer.toneMappingExposure = 1;
 
-        config.container.appendChild(this.renderer.domElement)
+        if (config.container) {
+            config.container.appendChild(this.renderer.domElement)
+        }
 
         // animationMixer
         this.clock = new THREE.Clock()
@@ -79,6 +82,14 @@ export class Game extends Evento {
 
     }
 
+    get width() {
+        return this.config.container ? this.confile.container.offsetWidth : this.config.canvas ? this.config.canvas.width : 300
+    }
+    
+    get height() {
+        return this.config.container ? this.confile.container.offsetHeight : this.config.canvas ? this.config.canvas.height : 500
+    }
+
     get resolution() {
         if (!this.#resolution) {
             this.#resolution = window.devicePixelRatio
@@ -96,15 +107,15 @@ export class Game extends Evento {
      * @param {number} h 
      */
     resize(w, h) {
-        this.width = w || this.config.container.offsetWidth
-        this.height = h || this.config.container.offsetHeight
+        let _width = w || this.width
+        let _height = h || this.height
 
-        this.renderer.setSize(this.width, this.height);
+        this.renderer.setSize(_width, _height);
 
-        this.camera.aspect = this.width / this.height;
+        this.camera.aspect = _width / _height;
         this.camera.updateProjectionMatrix();
 
-        this.emit('viewSizeChanged', { width: this.width, height: this.height });
+        this.emit('viewSizeChanged', { width: _width, height: _height });
     }
 
     /**
