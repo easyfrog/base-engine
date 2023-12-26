@@ -68,7 +68,7 @@ export class Game extends Evento {
         this.camera = new THREE.PerspectiveCamera(45, this.width / this.height, 1, 10000)
         this.camera.position.set(0, 40, -100)
         this.controller = new OrbitController(this, this.camera, this.renderer.domElement)
-
+        
         this.controller.addEventListener('change', () => {
             this.emit('viewChanged')
         })
@@ -83,11 +83,11 @@ export class Game extends Evento {
     }
 
     get width() {
-        return this.config.container ? this.confile.container.offsetWidth : this.config.canvas ? this.config.canvas.width : 300
+        return this.config.container ? this.config.container.offsetWidth : this.config.canvas ? this.config.canvas.width : 300
     }
     
     get height() {
-        return this.config.container ? this.confile.container.offsetHeight : this.config.canvas ? this.config.canvas.height : 500
+        return this.config.container ? this.config.container.offsetHeight : this.config.canvas ? this.config.canvas.height : 500
     }
 
     get resolution() {

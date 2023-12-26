@@ -99,6 +99,7 @@ var fs_replace = /*glsl*/`
  * 一般用于场景中的底图(plane)对掉硬硬的边缘
  * 使用 THREE.ShaderLib.lambert 修改
  */
+
 /**
  * @example
  * // init mode, 矩形

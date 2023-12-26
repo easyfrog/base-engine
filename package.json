@@ -18,7 +18,9 @@
         "@types/three": "^0.152.1",
         "3d-tiles-renderer": "^0.3.20",
         "postprocessing": "^6.31.2",
-        "svelte": "^4.1.1"
+        "svelte": "^4.1.1",
+        "three-platformize": "^1.133.3",
+        "three-platformize-151": "^1.151.3"
     },
     "peerDependencies": {
         "three": "^0.152.2"
